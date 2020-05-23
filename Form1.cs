@@ -13,6 +13,7 @@ namespace TicTacToe
     public partial class Form1 : Form
     {
         bool xPlayerTurn = true;
+        int turnCount = 0;
 
         public Form1()
         {
@@ -21,10 +22,17 @@ namespace TicTacToe
             InitializeCells();
         }
 
+      
         private void InitializeGrid()
         {
             Grid.BackColor = Color.Beige;
             Grid.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset;
+
+        }
+        private void RestartGame()
+       {
+            InitializeCells();
+            turnCount = 0;
 
         }
 
@@ -58,7 +66,9 @@ namespace TicTacToe
             {
                 label.Text = "O";
             }
+            turnCount++;
             CheckForWin();
+            CheckForDraw();
             xPlayerTurn = !xPlayerTurn;
         
         }
@@ -79,6 +89,14 @@ namespace TicTacToe
                 GameOver();
             }
         }
+        private void CheckForDraw()
+        {
+            if(turnCount == 9)
+            {
+                MessageBox.Show("Draw!");
+                RestartGame();
+            }
+        }
 
         private void GameOver()
         {
@@ -92,6 +110,7 @@ namespace TicTacToe
                 winner = "O";
             }
             MessageBox.Show(winner + "wins!");
+            RestartGame();
         }
     }
 
