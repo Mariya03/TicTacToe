@@ -44,6 +44,8 @@ namespace TicTacToe
             {
                 labelName = "label" + i;
                 Grid.Controls[labelName].Text = string.Empty;
+                Grid.Controls[labelName].BackColor = Color.Transparent;
+
             }
         }
 
@@ -89,6 +91,51 @@ namespace TicTacToe
                 GameOver();
             }
         }
+
+        private void WinnerCellsChangeColor()
+        {
+            if (label1.Text == label2.Text && label1.Text == label3.Text && label1.Text != "")
+            {
+                ChangeCellColors(label1, label2, label3, Color.Brown);
+            }
+            else if (label4.Text == label5.Text && label4.Text == label6.Text && label4.Text != "")
+            {
+                ChangeCellColors(label4, label5, label6, Color.Brown);
+            }
+            else if (label7.Text == label8.Text && label7.Text == label9.Text && label7.Text != "")
+            {
+                ChangeCellColors(label7, label8, label9, Color.Brown);
+            }
+            else if (label1.Text == label4.Text && label1.Text == label7.Text && label1.Text != "")
+            {
+                ChangeCellColors(label1, label4, label1, Color.Brown);
+            }
+            else if (label2.Text == label5.Text && label2.Text == label8.Text && label2.Text != "")
+            {
+                ChangeCellColors(label2, label5, label2, Color.Brown);
+            }
+            else if (label3.Text == label6.Text && label3.Text == label9.Text && label3.Text != "")
+            {
+                ChangeCellColors(label3, label6, label9, Color.Brown);
+            }
+            else if (label1.Text == label5.Text && label1.Text == label9.Text && label1.Text != "")
+            {
+                ChangeCellColors(label1, label5, label9, Color.Brown);
+            }
+            else if (label3.Text == label5.Text && label3.Text == label7.Text && label3.Text != "")
+            {
+                ChangeCellColors(label3, label5, label7, Color.Brown);
+            }
+
+        }
+
+        private void ChangeCellColors(Label firstLabel, Label secondlabel, Label thirdLabel, Color color)
+        {
+            firstLabel.BackColor = color;
+            secondlabel.BackColor = color;
+            thirdLabel.BackColor = color;
+        }
+
         private void CheckForDraw()
         {
             if(turnCount == 9)
@@ -109,6 +156,7 @@ namespace TicTacToe
             {
                 winner = "O";
             }
+            WinnerCellsChangeColor();
             MessageBox.Show(winner + "wins!");
             RestartGame();
         }
