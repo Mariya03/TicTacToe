@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,6 +50,8 @@ namespace TicTacToe
             }
         }
 
+
+
         private void Player_Click(object sender, EventArgs e)
         {
             Label label = (Label)sender;
@@ -69,6 +72,7 @@ namespace TicTacToe
                 label.Text = "O";
             }
             turnCount++;
+            PlaySound();
             CheckForWin();
             CheckForDraw();
             xPlayerTurn = !xPlayerTurn;
@@ -136,6 +140,12 @@ namespace TicTacToe
             thirdLabel.BackColor = color;
         }
 
+        private void PlaySound()
+        {
+            System.IO.Stream str = Properties.Resources.click_sound_wav;
+            System.Media.SoundPlayer snd = new System.Media.SoundPlayer(str);
+            snd.Play();
+        }
         private void CheckForDraw()
         {
             if(turnCount == 9)
