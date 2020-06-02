@@ -78,7 +78,7 @@ namespace TicTacToe
                 timer1.Start();
             }
             turnCount++;
-            PlaySound("beep_sound");
+            PlaySound("_333");
             CheckForWin();
             CheckForDraw();
             xPlayerTurn = !xPlayerTurn;

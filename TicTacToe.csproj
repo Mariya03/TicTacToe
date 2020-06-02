@@ -207,5 +207,8 @@
   <ItemGroup>
     <None Include="Resources\x-frame-020.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\333.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

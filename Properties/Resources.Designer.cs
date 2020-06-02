@@ -63,9 +63,9 @@ namespace TicTacToe.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.IO.UnmanagedMemoryStream, аналогичного System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream beep_sound {
+        internal static System.IO.UnmanagedMemoryStream _333 {
             get {
-                return ResourceManager.GetStream("beep_sound", resourceCulture);
+                return ResourceManager.GetStream("_333", resourceCulture);
             }
         }
         
