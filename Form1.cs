@@ -23,7 +23,7 @@ namespace TicTacToe
         }
 
       
-        private void InitializeGrid()
+        private void InitializeGrid()   
         {
             Grid.BackColor = Color.Beige;
             Grid.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset;
@@ -43,7 +43,7 @@ namespace TicTacToe
             for(int i = 1; i <= 9; i++ )
             {
                 labelName = "label" + i;
-                Grid.Controls[labelName].Text = string.Empty;
+                Grid.Controls[labelName].Text = String.Empty;
                 Grid.Controls[labelName].BackColor = Color.Transparent;
 
             }
@@ -53,7 +53,7 @@ namespace TicTacToe
         {
             Label label = (Label)sender;
 
-            if (label.Text != string.Empty)
+            if (label.Text != String.Empty)
             {
                 return;
             }
@@ -69,6 +69,7 @@ namespace TicTacToe
                 label.Text = "O";
             }
             turnCount++;
+            PLaySound("beep_sound");
             CheckForWin();
             CheckForDraw();
             xPlayerTurn = !xPlayerTurn;
@@ -78,14 +79,14 @@ namespace TicTacToe
         private void CheckForWin()
         {
             if(
-               (label1.Text == label2.Text && label2.Text == label3.Text && label1.Text != string.Empty) ||
-               (label4.Text == label5.Text && label5.Text == label6.Text && label4.Text != string.Empty) ||
-               (label7.Text == label8.Text && label8.Text == label9.Text && label7.Text != string.Empty) ||
-               (label1.Text == label4.Text && label4.Text == label7.Text && label1.Text != string.Empty) ||
-               (label2.Text == label5.Text && label5.Text == label8.Text && label2.Text != string.Empty) ||
-               (label3.Text == label6.Text && label6.Text == label9.Text && label3.Text != string.Empty) ||
-               (label1.Text == label5.Text && label5.Text == label9.Text && label1.Text != string.Empty) ||
-               (label3.Text == label5.Text && label5.Text == label7.Text && label3.Text != string.Empty) 
+               (label1.Text == label2.Text && label2.Text == label3.Text && label1.Text != String.Empty) ||
+               (label4.Text == label5.Text && label5.Text == label6.Text && label4.Text != String.Empty) ||
+               (label7.Text == label8.Text && label8.Text == label9.Text && label7.Text != String.Empty) ||
+               (label1.Text == label4.Text && label4.Text == label7.Text && label1.Text != String.Empty) ||
+               (label2.Text == label5.Text && label5.Text == label8.Text && label2.Text != String.Empty) ||
+               (label3.Text == label6.Text && label6.Text == label9.Text && label3.Text != String.Empty) ||
+               (label1.Text == label5.Text && label5.Text == label9.Text && label1.Text != String.Empty) ||
+               (label3.Text == label5.Text && label5.Text == label7.Text && label3.Text != String.Empty) 
                )
             {
                 GameOver();
@@ -129,17 +130,25 @@ namespace TicTacToe
 
         }
 
-        private void ChangeCellColors(Label firstLabel, Label secondlabel, Label thirdLabel, Color color)
+        private void ChangeCellColors(Label firstLabel, Label secondLabel, Label thirdLabel, Color color)
         {
             firstLabel.BackColor = color;
-            secondlabel.BackColor = color;
+            secondLabel.BackColor = color;
             thirdLabel.BackColor = color;
+        }
+
+        private void PLaySound(string soundName)
+        {
+            System.IO.Stream str = (System.IO.Stream)Properties.Resources.ResourceManager.GetObject(soundName);
+            System.Media.SoundPlayer snd = new System.Media.SoundPlayer(str);
+            snd.Play();
         }
 
         private void CheckForDraw()
         {
             if(turnCount == 9)
             {
+                PLaySound("click_sound");
                 MessageBox.Show("Draw!");
                 RestartGame();
             }
