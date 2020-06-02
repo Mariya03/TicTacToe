@@ -78,7 +78,7 @@ namespace TicTacToe
                 timer1.Start();
             }
             turnCount++;
-            PLaySound("beep_sound");
+            PlaySound("beep_sound");
             CheckForWin();
             CheckForDraw();
             xPlayerTurn = !xPlayerTurn;
@@ -146,7 +146,7 @@ namespace TicTacToe
             thirdLabel.BackColor = color;
         }
 
-        private void PLaySound(string soundName)
+        private void PlaySound(string soundName)
         {
             System.IO.Stream str = (System.IO.Stream)Properties.Resources.ResourceManager.GetObject(soundName);
             System.Media.SoundPlayer snd = new System.Media.SoundPlayer(str);
@@ -157,7 +157,7 @@ namespace TicTacToe
         {
             if(turnCount == 9)
             {
-                PLaySound("click_sound");
+                PlaySound("click_sound");
                 MessageBox.Show("Draw!");
                 RestartGame();
             }
